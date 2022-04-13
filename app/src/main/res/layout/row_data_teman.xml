@@ -8,6 +8,7 @@
     car_view:cardElevation="3dp"
     car_view:cardCornerRadius="5dp"
     car_view:cardUseCompatPadding="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +25,8 @@
             android:id="@+id/textTelpon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
             android:text="TextView" />
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

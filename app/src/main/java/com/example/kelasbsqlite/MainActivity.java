@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private TemanAdapter adapter;
     private ArrayList<Teman> temanArrayList;
     DBcontroller controler = new DBcontroller(this);
-    String id,nm,tlp;
+    String id,nma,tlp;
     private FloatingActionButton fab;
 
     @Override
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recycleview);
         fab = findViewById(R.id.floatingBtn);
         BacaData();
         adapter = new TemanAdapter(temanArrayList);

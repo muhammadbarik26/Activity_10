@@ -14,9 +14,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.HashMap;
 
 public class TemanBaru extends AppCompatActivity {
+
     private TextInputEditText tNama, tTelpon;
     private Button simpanBtn;
-    String nm,tlp;
+    String nma,tlp;
     DBcontroller controller = new DBcontroller(this);
 
     @Override
@@ -33,23 +34,25 @@ public class TemanBaru extends AppCompatActivity {
             public void onClick(View view) {
                 if(tNama.getText().toString().isEmpty() || tTelpon.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(), "Data Belum komplit !", Toast.LENGTH_SHORT).show();
-                } else {
-                    nm = tNama.getText().toString();
+
+                }
+                else{
+                    nma = tNama.getText().toString();
                     tlp = tTelpon.getText().toString();
 
-                    HashMap<String, String> qvalues = new HashMap<>();
-                    qvalues.put("nama", nm);
+                    HashMap<String,String> qvalues = new HashMap<>();
+                    qvalues.put("nama", nma);
                     qvalues.put("telpon", tlp);
 
-                    controller.InsertData(qvalues);
+                    controller.insertData(qvalues);
                     callHome();
-
                 }
             }
         });
     }
-    public  void  callHome() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+    public  void  callHome(){
+        Intent intent = new Intent(getApplicationContext(), com.example.kelasbsqlite.MainActivity.class);
         startActivity(intent);
         finish();
     }
