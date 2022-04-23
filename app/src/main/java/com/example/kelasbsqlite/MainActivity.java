@@ -6,12 +6,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.kelasbsqlite.adapter.TemanAdapter;
 import com.example.kelasbsqlite.database.DBcontroller;
 import com.example.kelasbsqlite.database.Teman;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +36,13 @@ public class MainActivity extends AppCompatActivity {
     DBcontroller controler = new DBcontroller(this);
     String id,nma,tlp;
     private FloatingActionButton fab;
+
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private static String url_select = "http://127.0.0.1/umyTI/bacateman.php";
+    public static final String TAG_ID = "id";
+    public static final String TAG_NAMA = "nama";
+    public static final String TAG_TELPON = "telpon";
+    private DBcontroller controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +68,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public  void BacaData(){
-        ArrayList<HashMap<String,String>> daftarTeman = controler.getAllTeman();
-        temanArrayList = new ArrayList<>();
-        //memindah dari hasil query kedalam teman
-        for(int i=0;i<daftarTeman.size();i++){
-            Teman teman = new Teman();
-            teman.setId(daftarTeman.get(i).get("id").toString());
-            teman.setNama(daftarTeman.get(i).get("nama").toString());
-            teman.setTelpon(daftarTeman.get(i).get("telpon").toString());
-            // Pindahkan dari Teman kedalam ArrayList teman di adapter
-            temanArrayList.add(teman);
-        }
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        JsonArrayRequest jArr = new JsonArrayRequest(url_select,new Response.Listener<JSONArray>(){
+            @Override
+            public void onResponse(JSONArray response){
+                Log.d(TAG, response.toString());
+                //Parsing json
+                for (int i=0; i<response.length();i++){
+                    try {
+                        JSONObject obj = response.getJSONObject(i);
+                        Teman item = new Teman();
+                        item.setId(obj.getString(TAG_ID));
+                        item.setNama(obj.getString(TAG_NAMA));
+                        item.setTelpon(obj.getString(TAG_TELPON));
+                        temanArrayList.add(item);
+                    } catch (JSONException e){
+                        e.printStackTrace();
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                error.printStackTrace();
+                Toast.makeText(MainActivity.this,"gagal",Toast.LENGTH_SHORT).show();
 
+            }
+        });
+        requestQueue.add(jArr);
     }
 }
