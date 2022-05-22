@@ -16,9 +16,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.kelasbsqlite.App.AppController;
 import com.example.kelasbsqlite.adapter.TemanAdapter;
-import com.example.kelasbsqlite.database.DBcontroller;
-import com.example.kelasbsqlite.database.Teman;
+import com.example.kelasbsqlite.App.Teman;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -26,14 +26,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private TemanAdapter adapter;
-    private ArrayList<Teman> temanArrayList;
-    DBcontroller controler = new DBcontroller(this);
+    private ArrayList<Teman> temanArrayList=new ArrayList<>();
     String id,nma,tlp;
     private FloatingActionButton fab;
 
@@ -42,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG_ID = "id";
     public static final String TAG_NAMA = "nama";
     public static final String TAG_TELPON = "telpon";
-    private DBcontroller controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), TemanBaru.class);
+                Intent intent = new Intent(getApplicationContext(), TambahTeman.class);
                 startActivity(intent);
             }
         });

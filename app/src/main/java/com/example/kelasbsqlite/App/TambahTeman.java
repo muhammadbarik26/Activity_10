@@ -1,4 +1,4 @@
-package com.example.kelasbsqlite.database;
+package com.example.kelasbsqlite.App;
 
 import androidx.appcompat.app.AppCompatActivity;
 

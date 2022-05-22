@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.kelasbsqlite.database.DBcontroller;
+import com.example.kelasbsqlite.App.AppController;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.HashMap;
@@ -18,7 +18,6 @@ public class TemanBaru extends AppCompatActivity {
     private TextInputEditText tNama, tTelpon;
     private Button simpanBtn;
     String nma,tlp;
-    DBcontroller controller = new DBcontroller(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,7 @@ public class TemanBaru extends AppCompatActivity {
                     qvalues.put("nama", nma);
                     qvalues.put("telpon", tlp);
 
-                    controller.insertData(qvalues);
+                    //.insertData(qvalues);
                     callHome();
                 }
             }
