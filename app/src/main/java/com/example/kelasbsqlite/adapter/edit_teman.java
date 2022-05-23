@@ -17,16 +17,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.kelasbsqlite.App.AppController;
 import com.example.kelasbsqlite.MainActivity;
 import com.example.kelasbsqlite.R;
-import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class edit_teman extends AppCompatActivity {
     TextView idText;
@@ -35,7 +34,7 @@ public class edit_teman extends AppCompatActivity {
     String nma,tlp,id,namaEd,telponEd;
     int sukses;
 
-    private static String url_update="http://127.0.0.1/umyTI/updatetm.php";
+    private static String url_update="https://20200140078.praktikumtiumy.com/updatetm.php";
     private static final String TAG = edit_teman.class.getSimpleName();
     private static final String TAG_SUCCES="success";
 
@@ -62,7 +61,7 @@ public class edit_teman extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditData();
-                }
+            }
         });
     }
     public void EditData()
@@ -108,7 +107,7 @@ public class edit_teman extends AppCompatActivity {
         requestQueue.add(stringReq);
         callHome();
     }
-        public void callHome(){
+    public void callHome(){
         Intent i = new Intent(edit_teman.this, MainActivity.class);
         startActivity(i);
         finish();

@@ -14,7 +14,7 @@
         android:theme="@style/Theme.KelasBsqLite"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".TambahTeman"
+            android:name=".App.TambahTeman"
             android:exported="false">
 
         </activity>

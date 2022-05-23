@@ -31,7 +31,7 @@ public class TambahTeman extends AppCompatActivity {
     String nm,tlp;
     int success;
 
-    private static String url_insert = "http://127.0.0.1/umyTI/tambahtm.php";
+    private static String url_insert = "https://20200140078.praktikumtiumy.com/insertTM.php";
     private static final String TAG = TambahTeman.class.getSimpleName();
     private static final String TAG_SUCCES = "success";
 
@@ -41,8 +41,8 @@ public class TambahTeman extends AppCompatActivity {
         setContentView(R.layout.activity_tambah_teman);
 
         editNama = findViewById(R.id.edNama);
-        editTelpon = findViewById(R.id.edTelp);
-        simpanBtn = findViewById(R.id.simpanBTN);
+        editTelpon = findViewById(R.id.edTelpon);
+        simpanBtn = findViewById(R.id.btnSimpan);
 
         simpanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
